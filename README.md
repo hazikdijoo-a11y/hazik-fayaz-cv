@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hazik Fayaz — Career Website
 
-## Getting Started
+Personal career website / digital CV for a Cabin Crew Trainer application.
 
-First, run the development server:
+## Stack
+
+Next.js 16 (App Router) · TypeScript · Tailwind CSS v4
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 (or the port shown in the terminal).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All resume content lives in one place: `src/lib/data.ts`. Edit that file to update copy,
+experience, skills, etc. — every section imports from it, so there's a single source of truth.
 
-## Learn More
+## Adding your photo
 
-To learn more about Next.js, take a look at the following resources:
+Drop a photo at `public/images/hazik-fayaz.jpg` (3:4 portrait crop recommended). The hero
+section (`src/components/Portrait.tsx`) automatically detects the file and swaps out the
+placeholder initials — no code change needed.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Regenerating the downloadable CV
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The PDF at `public/cv/Hazik-Fayaz-Cabin-Crew-Trainer-CV.pdf` is a static file, generated from an
+HTML template (not part of the Next.js build). To regenerate after editing `src/lib/data.ts`:
 
-## Deploy on Vercel
+1. Update the matching content in the CV template (kept outside this repo during generation —
+   ask Claude to regenerate it, or rebuild the HTML manually using `src/lib/data.ts` as the
+   source of truth).
+2. Render to PDF with headless Chrome:
+   ```bash
+   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+     --headless --disable-gpu --no-pdf-header-footer \
+     --print-to-pdf="public/cv/Hazik-Fayaz-Cabin-Crew-Trainer-CV.pdf" \
+     "file:///path/to/cv.html"
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Internal notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `APPLICATION-STRATEGY.md` for the role-fit analysis, keyword targeting, and honest gaps to
+address in interviews. Not published on the site.
+
+## Build
+
+```bash
+npm run build
+npm run start
+```
