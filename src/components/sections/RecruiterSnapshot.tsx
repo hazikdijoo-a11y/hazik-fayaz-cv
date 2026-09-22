@@ -1,6 +1,7 @@
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { recruiterSnapshot } from "@/lib/data";
+import { withBase, cvPath } from "@/lib/paths";
 
 const rows: [string, string][] = [
   ["Target Role", recruiterSnapshot.targetRole],
@@ -38,7 +39,7 @@ export function RecruiterSnapshot() {
 
           <div className="flex flex-col justify-end gap-4">
             <Button
-              href="/cv/Hazik-Fayaz-Cabin-Crew-Trainer-CV.pdf"
+              href={withBase(cvPath)}
               download
               variant="secondary"
               className="!border-inverse-foreground/30 !text-inverse-foreground hover:!border-accent hover:!text-accent"

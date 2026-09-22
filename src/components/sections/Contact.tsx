@@ -2,6 +2,7 @@ import { Container } from "../ui/Container";
 import { SectionLabel } from "../ui/SectionLabel";
 import { Button } from "../ui/Button";
 import { profile } from "@/lib/data";
+import { withBase, cvPath } from "@/lib/paths";
 
 export function Contact() {
   return (
@@ -44,7 +45,7 @@ export function Contact() {
               <p className="mt-2 text-sm font-medium text-foreground">{profile.linkedin}</p>
             </a>
             <a
-              href="/cv/Hazik-Fayaz-Cabin-Crew-Trainer-CV.pdf"
+              href={withBase(cvPath)}
               download
               className="rounded-2xl border border-border p-6 transition-colors hover:border-accent"
             >

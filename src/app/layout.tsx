@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
+import { withBase } from "@/lib/paths";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-const siteUrl = "https://hazikfayaz.com";
+const siteUrl = "https://hazikdijoo-a11y.github.io" + withBase("/");
 const title = "Hazik Fayaz | Aviation Professional — Cabin Leadership";
 const description =
   "Hazik Fayaz is an aviation professional with 10+ years of commercial cabin crew experience, specializing in onboard safety leadership and service excellence.";
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     description,
     url: siteUrl,
     siteName: "Hazik Fayaz",
-    images: ["/images/og-cover.jpg"],
+    images: ["images/og-cover.jpg"],
     locale: "en_US",
     type: "profile",
   },
@@ -53,10 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/images/og-cover.jpg"],
-  },
-  icons: {
-    icon: "/favicon.ico",
+    images: ["images/og-cover.jpg"],
   },
 };
 

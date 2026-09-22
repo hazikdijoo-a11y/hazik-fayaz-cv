@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Container } from "./ui/Container";
 import { Button } from "./ui/Button";
+import { withBase, cvPath } from "@/lib/paths";
 
 const links = [
   { href: "#summary", label: "Profile" },
@@ -68,7 +69,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="/cv/Hazik-Fayaz-Cabin-Crew-Trainer-CV.pdf" download variant="secondary" className="!py-2.5 !px-5 text-xs">
+          <Button href={withBase(cvPath)} download variant="secondary" className="!py-2.5 !px-5 text-xs">
             Download CV
           </Button>
         </div>
@@ -109,7 +110,7 @@ export function Navbar() {
             ))}
             <div className="pt-2">
               <Button
-                href="/cv/Hazik-Fayaz-Cabin-Crew-Trainer-CV.pdf"
+                href={withBase(cvPath)}
                 download
                 variant="primary"
                 className="w-full"

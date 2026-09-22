@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
 import { RouteMotif } from "./RouteMotif";
+import { withBase } from "@/lib/paths";
 
 const PHOTO_PATH = "images/hazik-fayaz.jpg";
 
@@ -18,7 +19,7 @@ export function Portrait() {
       <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]">
         {hasPhoto ? (
           <Image
-            src={`/${PHOTO_PATH}`}
+            src={withBase(`/${PHOTO_PATH}`)}
             alt="Hazik Fayaz, aviation professional"
             fill
             sizes="(max-width: 768px) 80vw, 384px"

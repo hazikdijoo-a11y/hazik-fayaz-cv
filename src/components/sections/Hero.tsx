@@ -5,6 +5,7 @@ import { Portrait } from "../Portrait";
 import { Magnetic } from "../motion/Magnetic";
 import { HeroSpotlight, ParallaxWrap } from "../motion/HeroFX";
 import { profile } from "@/lib/data";
+import { withBase, cvPath } from "@/lib/paths";
 
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
@@ -61,7 +62,7 @@ export function Hero() {
             </Magnetic>
             <Magnetic>
               <Button
-                href="/cv/Hazik-Fayaz-Cabin-Crew-Trainer-CV.pdf"
+                href={withBase(cvPath)}
                 download
                 variant="secondary"
               >
