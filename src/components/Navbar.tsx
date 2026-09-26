@@ -11,6 +11,7 @@ const links = [
   { href: "#relevance", label: "Role Fit" },
   { href: "#skills", label: "Skills" },
   { href: "#contact", label: "Contact" },
+  { href: withBase("/portfolio/"), label: "Portfolio" },
 ];
 
 export function Navbar() {

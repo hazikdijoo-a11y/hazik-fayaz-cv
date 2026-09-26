@@ -14,6 +14,11 @@ const variants: Record<Variant, string> = {
   ghost: "text-foreground hover:text-accent",
 };
 
+/* For links that can't use <Button> (e.g. client links with their own onClick). */
+export function buttonClasses(variant: Variant = "primary", className = "") {
+  return `${base} ${variants[variant]} ${className}`;
+}
+
 export function Button({
   children,
   href,

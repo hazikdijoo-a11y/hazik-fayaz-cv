@@ -53,3 +53,18 @@ address in interviews. Not published on the site.
 npm run build
 npm run start
 ```
+
+## Portfolio (/portfolio/)
+
+The freelance websites-and-software portfolio moved here from thealtitudemindset.com/portfolio/
+(which now redirects to it).
+
+- `src/lib/projects.ts`: every project, the single source for the work list and the case-study
+  pages (`/portfolio/<slug>/`, generated with `generateStaticParams`). Only write verified facts.
+  Screenshots live in `public/images/work/`.
+- `src/lib/services.ts`: packages, starting prices, the ₹999 audit, support plans, FAQ and the
+  checklist items.
+- `src/components/portfolio/`: the page's own header, footer, mobile action bar, work filter,
+  enquiry form and checklist.
+- The enquiry form posts to Formspree (`meeyjedo`, the same inbox as the coaching site). Formspree's
+  allowed-domains setting must include `hazikdijoo-a11y.github.io`, or enquiries are rejected.
