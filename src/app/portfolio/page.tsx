@@ -8,7 +8,7 @@ import { IntakeForm } from "@/components/portfolio/IntakeForm";
 import { NeedLink } from "@/components/portfolio/NeedLink";
 import { WaIcon } from "@/components/portfolio/MobileBar";
 import { carePlans, faqs, packages, paths, steps, whatsappLink } from "@/lib/services";
-import { withBase } from "@/lib/paths";
+import { withBase, cvPath } from "@/lib/paths";
 
 const title = "Websites & Business Software for Small Businesses | Hazik Fayaz";
 const description =
@@ -331,11 +331,40 @@ export default function PortfolioPage() {
         </Container>
       </section>
 
+      {/* About: the person behind the work, with the CV one click away */}
+      <section id="about" className="scroll-mt-20 border-t border-border py-20 md:py-28">
+        <Container className="grid items-center gap-10 md:grid-cols-[0.7fr_1.3fr] md:gap-16">
+          <figure className="mx-auto w-full max-w-[280px] overflow-hidden rounded-2xl border border-border bg-surface md:max-w-[354px]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={withBase("/images/hazik-fayaz.jpg")} alt="Hazik Fayaz" width={600} height={800} loading="lazy" className="aspect-[3/4] h-auto w-full object-cover" />
+          </figure>
+          <div>
+            <SectionLabel index="05" title="Who you’ll work with" />
+            <h2 data-reveal>Hi, I’m Hazik.</h2>
+            <p className="mt-5 max-w-xl leading-relaxed text-foreground/80">
+              I’m based in Bengaluru and have spent more than ten years in commercial aviation, currently as Line Check Cabin Crew: a job built on
+              checklists, clear procedures and getting details right under pressure.
+            </p>
+            <p className="mt-4 max-w-xl leading-relaxed text-foreground/80">
+              I bring the same habits to every website and app I build: check everything, keep you informed, and write down plainly what isn’t finished.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="/" className={buttonClasses("secondary")}>
+                View my full CV <span aria-hidden="true">→</span>
+              </Link>
+              <a href={withBase(cvPath)} download className={buttonClasses("ghost", "!px-0 sm:!px-6")}>
+                Download CV (PDF)
+              </a>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* 7. FAQ */}
       <section id="faq" className="scroll-mt-20 py-20 md:py-28">
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.6fr]">
           <div>
-            <SectionLabel index="05" title="Questions" />
+            <SectionLabel index="06" title="Questions" />
             <h2 data-reveal>Before you get in touch</h2>
           </div>
           <div className="grid gap-3">
@@ -358,7 +387,7 @@ export default function PortfolioPage() {
       <section id="start" className="scroll-mt-16 border-t border-border bg-inverse py-20 md:py-28">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <SectionLabel index="06" title="Start a project" />
+            <SectionLabel index="07" title="Start a project" />
             <h2 data-reveal>Tell me about your business</h2>
             <p className="mt-5 text-foreground/75">Two minutes is enough. Rough answers are fine.</p>
             <ol className="mt-8 grid gap-4">

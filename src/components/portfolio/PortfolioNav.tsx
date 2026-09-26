@@ -15,7 +15,7 @@ export function PortfolioNav() {
     <header className="no-print sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
       <Container className="flex items-center justify-between gap-4 py-3.5">
         <Link href="/portfolio/" className="font-semibold tracking-tight text-foreground">
-          Hazik Fayaz <span className="font-normal text-muted">· Websites &amp; software</span>
+          Hazik Fayaz <span className="hidden font-normal text-muted sm:inline">· Websites &amp; software</span>
         </Link>
         <nav className="hidden items-center gap-7 md:flex" aria-label="Portfolio">
           {links.map((l) => (
@@ -24,9 +24,14 @@ export function PortfolioNav() {
             </Link>
           ))}
         </nav>
-        <Link href="/portfolio/#start" className={buttonClasses("primary", "!px-5 !py-2.5 text-xs")}>
-          Start a Project
-        </Link>
+        <div className="flex items-center gap-4 sm:gap-6">
+          <Link href="/" className="inline-flex min-h-11 items-center text-sm font-medium text-foreground/85 transition-colors hover:text-accent">
+            My CV
+          </Link>
+          <Link href="/portfolio/#start" className={buttonClasses("primary", "!px-5 !py-2.5 text-xs")}>
+            Start a Project
+          </Link>
+        </div>
       </Container>
     </header>
   );

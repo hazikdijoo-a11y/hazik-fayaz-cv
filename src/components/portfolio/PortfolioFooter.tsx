@@ -28,7 +28,8 @@ export function PortfolioFooter() {
         </div>
         <div className={col}>
           <p className="font-mono-tight text-[11px] uppercase text-foreground/70">Also</p>
-          <Link className={a} href="/">My aviation CV</Link>
+          <Link className={a} href="/">My CV</Link>
+          <Link className={a} href="/portfolio/#about">About me</Link>
         </div>
       </Container>
       <Container className="mt-10 border-t border-border pt-6">
