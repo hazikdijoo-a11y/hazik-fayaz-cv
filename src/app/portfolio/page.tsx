@@ -165,61 +165,51 @@ export default function PortfolioPage() {
       </section>
 
       {/* 3. Services and starting prices */}
-      <section id="services" className="scroll-mt-20 bg-[#faf8f4] py-20 text-[#3d4452] md:py-28">
+      <section id="services" className="scroll-mt-20 border-t border-border py-20 md:py-28">
         <Container>
-          <div className="flex items-center gap-3">
-            <span className="font-mono-tight text-xs text-[#8a6a2c]">02</span>
-            <span className="h-px w-8 bg-[#d9d4c7]" aria-hidden="true" />
-            <span className="font-mono-tight text-xs uppercase text-[#5c6472]">Services &amp; pricing</span>
-          </div>
-          <h2 data-reveal className="mt-5 text-[#10182a]">Three ways to work together</h2>
-          <p className="mt-5 max-w-xl">Prices are starting points, not fixed packages. You get a written quote for your exact scope before any work starts.</p>
+          <SectionLabel index="02" title="Services & pricing" />
+          <h2 data-reveal>Three ways to work together</h2>
+          <p className="mt-5 max-w-xl text-foreground/75">Prices are starting points, not fixed packages. You get a written quote for your exact scope before any work starts.</p>
 
           <ol className="mt-12 grid gap-5 lg:grid-cols-3">
             {packages.map((p) => (
               <li
                 key={p.id}
                 id={p.id}
-                className={`flex scroll-mt-24 flex-col rounded-3xl bg-white p-7 ${
-                  p.main ? "border-2 border-[#10182a] shadow-[0_12px_40px_rgba(16,24,42,0.12)]" : "border border-[#e4e0d5]"
+                className={`flex scroll-mt-24 flex-col rounded-3xl bg-surface p-7 ${
+                  p.main ? "border-2 border-accent shadow-[0_12px_40px_rgba(0,0,0,0.35)]" : "border border-border"
                 }`}
               >
-                <p className="font-mono-tight text-[11px] uppercase text-[#8a6a2c]">{p.tier}</p>
-                <h3 className="font-headline mt-2 min-h-[2.4em] text-2xl leading-tight text-[#10182a] lg:min-h-[2.5em]">{p.name}</h3>
-                <p className="mt-2 text-sm lg:min-h-[4.2em]">{p.forWhom}</p>
-                <p className="font-headline mt-5 text-4xl text-[#10182a]">
-                  <span className="mr-1 font-sans text-sm text-[#5c6472]">From</span>
+                <p className="font-mono-tight text-[11px] uppercase text-accent">{p.tier}</p>
+                <h3 className="font-headline mt-2 min-h-[2.4em] text-2xl leading-tight text-foreground lg:min-h-[2.5em]">{p.name}</h3>
+                <p className="mt-2 text-sm text-foreground/75 lg:min-h-[4.2em]">{p.forWhom}</p>
+                <p className="font-headline mt-5 text-4xl text-foreground">
+                  <span className="mr-1 font-sans text-sm text-muted">From</span>
                   {p.from}
                 </p>
-                <p className="mt-1.5 text-xs text-[#5c6472]">{p.range}</p>
-                <ul className="mt-6 grid flex-1 content-start gap-2.5 border-t border-[#e4e0d5] pt-6">
+                <p className="mt-1.5 text-xs text-muted">{p.range}</p>
+                <ul className="mt-6 grid flex-1 content-start gap-2.5 border-t border-border pt-6">
                   {p.includes.map((i) => (
-                    <li key={i} className="flex gap-3 text-sm">
-                      <span className="mt-0.5 font-bold text-[#2f7d5a]" aria-hidden="true">
+                    <li key={i} className="flex gap-3 text-sm text-foreground/85">
+                      <span className="mt-0.5 font-bold text-success" aria-hidden="true">
                         ✓
                       </span>
                       {i}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-6 text-xs text-[#5c6472]">
+                <p className="mt-6 text-xs text-muted">
                   See:{" "}
                   {p.proof.map((pr, i) => (
                     <span key={pr.slug}>
                       {i > 0 && ", "}
-                      <Link href={`/portfolio/${pr.slug}/`} className="font-medium text-[#10182a] underline underline-offset-2">
+                      <Link href={`/portfolio/${pr.slug}/`} className="font-medium text-foreground underline underline-offset-2">
                         {pr.label}
                       </Link>
                     </span>
                   ))}
                 </p>
-                <NeedLink
-                  need={p.need}
-                  className={buttonClasses(
-                    "primary",
-                    `mt-5 w-full ${p.main ? "!bg-[#10182a] !text-[#faf8f4]" : "!bg-transparent !text-[#10182a] border border-[#c9c3b4] hover:!border-[#10182a]"}`,
-                  )}
-                >
+                <NeedLink need={p.need} className={buttonClasses(p.main ? "primary" : "secondary", "mt-5 w-full")}>
                   {p.cta}
                 </NeedLink>
               </li>
@@ -227,20 +217,20 @@ export default function PortfolioPage() {
           </ol>
 
           {/* Low-friction entry: visible, but quieter than the packages */}
-          <div id="audit" className="mt-8 grid scroll-mt-24 items-center gap-6 rounded-3xl border border-dashed border-[#c9c3b4] bg-[#f3f1ea] p-6 md:grid-cols-[1.6fr_1fr] md:p-8">
+          <div id="audit" className="mt-8 grid scroll-mt-24 items-center gap-6 rounded-3xl border border-dashed border-border bg-surface-muted p-6 md:grid-cols-[1.6fr_1fr] md:p-8">
             <div>
-              <p className="font-mono-tight text-[11px] uppercase text-[#5c6472]">Not ready for a project?</p>
-              <h3 className="mt-2 text-xl font-semibold text-[#10182a]">
+              <p className="font-mono-tight text-[11px] uppercase text-muted">Not ready for a project?</p>
+              <h3 className="mt-2 text-xl font-semibold text-foreground">
                 Website Growth Audit <span className="font-headline ml-1 font-normal">₹999</span>
               </h3>
-              <p className="mt-2 text-sm">A written review of your current website with 5 to 10 specific fixes in priority order, and a short call to go through them.</p>
-              <p className="mt-2 text-xs text-[#5c6472]">Covers: design and ease of use · mobile · messaging · calls to action · lead capture</p>
+              <p className="mt-2 text-sm text-foreground/80">A written review of your current website with 5 to 10 specific fixes in priority order, and a short call to go through them.</p>
+              <p className="mt-2 text-xs text-muted">Covers: design and ease of use · mobile · messaging · calls to action · lead capture</p>
             </div>
             <div>
-              <NeedLink need="audit" className={buttonClasses("secondary", "w-full !border-[#10182a] !text-[#10182a] md:w-auto")}>
+              <NeedLink need="audit" className={buttonClasses("secondary", "w-full md:w-auto")}>
                 Request an audit
               </NeedLink>
-              <p className="mt-3 text-xs text-[#5c6472]">I confirm I can help, then send a Razorpay payment link. No payment up front.</p>
+              <p className="mt-3 text-xs text-muted">I confirm I can help, then send a Razorpay payment link. No payment up front.</p>
             </div>
           </div>
         </Container>
