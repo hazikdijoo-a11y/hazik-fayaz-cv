@@ -4,10 +4,12 @@ import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { buttonClasses } from "@/components/ui/Button";
 import { WorkSection } from "@/components/portfolio/WorkSection";
+import { Testimonials, testimonialsJsonLd } from "@/components/portfolio/Testimonials";
 import { IntakeForm } from "@/components/portfolio/IntakeForm";
 import { NeedLink } from "@/components/portfolio/NeedLink";
 import { WaIcon } from "@/components/portfolio/MobileBar";
 import { carePlans, faqs, packages, paths, steps, whatsappLink } from "@/lib/services";
+import { testimonials } from "@/lib/testimonials";
 import { withBase, cvPath } from "@/lib/paths";
 
 const title = "Websites & Business Software for Small Businesses | Hazik Fayaz";
@@ -56,6 +58,11 @@ const jsonLd = {
           { "@type": "Offer", name: "Website Growth Audit", price: 999, priceCurrency: "INR" },
         ],
       },
+      // Only present once there's a real testimonial — see src/lib/testimonials.ts.
+      ...(testimonials.length ? { review: testimonialsJsonLd().filter((r) => r["@type"] === "Review") } : {}),
+      ...(testimonials.some((t) => t.rating)
+        ? { aggregateRating: testimonialsJsonLd().find((r) => r["@type"] === "AggregateRating") }
+        : {}),
     },
     {
       "@type": "FAQPage",
@@ -164,10 +171,13 @@ export default function PortfolioPage() {
         </Container>
       </section>
 
-      {/* 3. Services and starting prices */}
+      {/* 3. Testimonials — hidden until there's a real one, see Testimonials.tsx */}
+      <Testimonials />
+
+      {/* 4. Services and starting prices */}
       <section id="services" className="scroll-mt-20 border-t border-border py-20 md:py-28">
         <Container>
-          <SectionLabel index="02" title="Services & pricing" />
+          <SectionLabel index="03" title="Services & pricing" />
           <h2 data-reveal>Three ways to work together</h2>
           <p className="mt-5 max-w-xl text-foreground/75">Prices are starting points, not fixed packages. You get a written quote for your exact scope before any work starts.</p>
 
@@ -236,10 +246,10 @@ export default function PortfolioPage() {
         </Container>
       </section>
 
-      {/* 4. How I work */}
+      {/* 5. How I work */}
       <section id="process" className="scroll-mt-20 py-20 md:py-28">
         <Container>
-          <SectionLabel index="03" title="How I work" />
+          <SectionLabel index="04" title="How I work" />
           <h2 data-reveal>Seven steps, no surprises</h2>
           <p className="mt-5 max-w-xl text-foreground/75">You talk to the person doing the work at every step.</p>
           <ol className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 xl:gap-5">
@@ -254,11 +264,11 @@ export default function PortfolioPage() {
         </Container>
       </section>
 
-      {/* 5. Optional support plans */}
+      {/* 6. Optional support plans */}
       <section id="care" className="scroll-mt-20 border-t border-border py-20 md:py-28">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.6fr]">
           <div>
-            <SectionLabel index="04" title="After launch" />
+            <SectionLabel index="05" title="After launch" />
             <h2 data-reveal>Optional support plans</h2>
             <p className="mt-5 max-w-md text-foreground/75">
               You don’t need one. They’re for businesses that would rather not think about updates, backups and small changes. The price within each
@@ -289,7 +299,7 @@ export default function PortfolioPage() {
         </Container>
       </section>
 
-      {/* 6. Lead magnet */}
+      {/* 7. Lead magnet */}
       <section id="checklist" className="bg-surface py-20 md:py-24">
         <Container className="grid items-center gap-10 md:grid-cols-[1.1fr_1fr]">
           <div>
@@ -321,7 +331,7 @@ export default function PortfolioPage() {
         </Container>
       </section>
 
-      {/* About: the person behind the work, with the CV one click away */}
+      {/* 8. About: the person behind the work, with the CV one click away */}
       <section id="about" className="scroll-mt-20 border-t border-border py-20 md:py-28">
         <Container className="grid items-center gap-10 md:grid-cols-[0.7fr_1.3fr] md:gap-16">
           <figure className="mx-auto w-full max-w-[280px] overflow-hidden rounded-2xl border border-border bg-surface md:max-w-[354px]">
@@ -329,7 +339,7 @@ export default function PortfolioPage() {
             <img src={withBase("/images/hazik-fayaz.jpg")} alt="Hazik Fayaz" width={600} height={800} loading="lazy" className="aspect-[3/4] h-auto w-full object-cover" />
           </figure>
           <div>
-            <SectionLabel index="05" title="Who you’ll work with" />
+            <SectionLabel index="06" title="Who you’ll work with" />
             <h2 data-reveal>Hi, I’m Hazik.</h2>
             <p className="mt-5 max-w-xl leading-relaxed text-foreground/80">
               I’m based in Bengaluru and have spent more than ten years in commercial aviation, currently as Line Check Cabin Crew: a job built on
@@ -350,11 +360,11 @@ export default function PortfolioPage() {
         </Container>
       </section>
 
-      {/* 7. FAQ */}
+      {/* 9. FAQ */}
       <section id="faq" className="scroll-mt-20 py-20 md:py-28">
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.6fr]">
           <div>
-            <SectionLabel index="06" title="Questions" />
+            <SectionLabel index="07" title="Questions" />
             <h2 data-reveal>Before you get in touch</h2>
           </div>
           <div className="grid gap-3">
@@ -373,11 +383,11 @@ export default function PortfolioPage() {
         </Container>
       </section>
 
-      {/* 8. Qualification form */}
+      {/* 10. Qualification form */}
       <section id="start" className="scroll-mt-16 border-t border-border bg-inverse py-20 md:py-28">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <SectionLabel index="07" title="Start a project" />
+            <SectionLabel index="08" title="Start a project" />
             <h2 data-reveal>Tell me about your business</h2>
             <p className="mt-5 text-foreground/75">Two minutes is enough. Rough answers are fine.</p>
             <ol className="mt-8 grid gap-4">
