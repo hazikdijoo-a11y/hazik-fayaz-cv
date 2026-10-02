@@ -2,18 +2,28 @@
 
 :root {
   --background: #0a0d16;
-  --surface: #111524;
-  --surface-muted: #161b2c;
+  --surface: rgba(244, 241, 234, 0.065);
+  --surface-muted: rgba(244, 241, 234, 0.04);
   --foreground: #f4f1ea;
   --muted: #97a0b3;
-  --border: #232a3d;
+  --border: rgba(244, 241, 234, 0.14);
   --primary: #f4f1ea;
   --primary-foreground: #0a0d16;
   --accent: #cfa458;
-  --accent-soft: #2a2213;
+  --accent-soft: rgba(207, 164, 88, 0.14);
   --success: #4caf82;
   --inverse: #10182a;
   --inverse-foreground: #faf8f4;
+
+  /* Liquid Glass: a bright, high-contrast pane reserved for the page's one
+     "fill this in" moment (the enquiry form). Dark ink on near-white glass,
+     same contrast pairing as --primary/--primary-foreground, just softer. */
+  --glass-bright: rgba(250, 248, 244, 0.86);
+  --glass-bright-border: rgba(255, 255, 255, 0.5);
+  --glass-ink: #10182a;
+  --glass-ink-muted: #4c5262;
+  --glass-field: rgba(255, 255, 255, 0.55);
+  --glass-field-border: rgba(16, 24, 42, 0.14);
 
   --font-display: var(--font-inter);
   --font-body: var(--font-inter);
@@ -23,17 +33,24 @@
 
 :root[data-theme="light"] {
   --background: #faf8f4;
-  --surface: #ffffff;
-  --surface-muted: #f3f1ea;
+  --surface: rgba(255, 255, 255, 0.55);
+  --surface-muted: rgba(255, 255, 255, 0.35);
   --foreground: #10182a;
   --muted: #5c6472;
-  --border: #e4e0d5;
+  --border: rgba(16, 24, 42, 0.12);
   --primary: #10182a;
   --primary-foreground: #faf8f4;
   --accent: #a9803f;
-  --accent-soft: #f1e6d2;
+  --accent-soft: rgba(169, 128, 63, 0.14);
   --success: #2f7d5a;
   color-scheme: light;
+
+  --glass-bright: rgba(255, 255, 255, 0.72);
+  --glass-bright-border: rgba(255, 255, 255, 0.9);
+  --glass-ink: #10182a;
+  --glass-ink-muted: #4c5262;
+  --glass-field: rgba(255, 255, 255, 0.75);
+  --glass-field-border: rgba(16, 24, 42, 0.14);
 }
 
 @theme inline {
@@ -50,6 +67,12 @@
   --color-success: var(--success);
   --color-inverse: var(--inverse);
   --color-inverse-foreground: var(--inverse-foreground);
+  --color-glass-bright: var(--glass-bright);
+  --color-glass-bright-border: var(--glass-bright-border);
+  --color-glass-ink: var(--glass-ink);
+  --color-glass-ink-muted: var(--glass-ink-muted);
+  --color-glass-field: var(--glass-field);
+  --color-glass-field-border: var(--glass-field-border);
   --font-sans: var(--font-display);
   --font-headline: var(--font-fraunces);
   --font-mono: var(--font-mono);
@@ -82,9 +105,151 @@ html {
 }
 
 body {
+  position: relative;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Liquid Glass ambience: two quiet, fixed colour fields for glass panels to
+   pick up as they blur the page behind them. Kept low-opacity and far apart
+   in hue (gold / cool blue) so it reads as light, not as a tinted filter. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(640px 480px at 14% -6%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+    radial-gradient(760px 560px at 100% 28%, color-mix(in srgb, #3f6fb0 16%, transparent), transparent 62%),
+    radial-gradient(900px 640px at 18% 92%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 65%);
+}
+:root[data-theme="light"] body::after {
+  background:
+    radial-gradient(640px 480px at 14% -6%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
+    radial-gradient(760px 560px at 100% 28%, color-mix(in srgb, #3f6fb0 10%, transparent), transparent 62%),
+    radial-gradient(900px 640px at 18% 92%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 65%);
+}
+
+/* Liquid Glass material: every card already carries .bg-surface /
+   .bg-surface-muted / .bg-accent-soft as its only background — give that
+   one declaration backdrop-blur, saturation and a light-catching rim
+   instead of reskinning each component individually. */
+.bg-surface,
+.bg-surface-muted,
+.bg-accent-soft {
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.18),
+    0 24px 48px -28px rgba(0, 0, 0, 0.55);
+}
+:root[data-theme="light"] .bg-surface,
+:root[data-theme="light"] .bg-surface-muted,
+:root[data-theme="light"] .bg-accent-soft {
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+    inset 0 0 0 1px rgba(16, 24, 42, 0.04),
+    0 1px 2px rgba(16, 24, 42, 0.05),
+    0 20px 40px -26px rgba(16, 24, 42, 0.2);
+}
+
+/* The one bright glass pane: the enquiry form. */
+.glass-bright {
+  background: var(--glass-bright);
+  border-color: var(--glass-bright-border);
+  color: var(--glass-ink);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 32px 64px -28px rgba(0, 0, 0, 0.5);
+}
+.glass-field {
+  background: var(--glass-field);
+  border: 1px solid var(--glass-field-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.glass-field[aria-invalid="true"] {
+  border-color: #a33a22;
+}
+
+/* Glass buttons. Primary stays the one unmistakable action: a bright,
+   accent-tinted pane of glass with dark ink text — same contrast pairing
+   as --primary/--primary-foreground. Secondary is a quieter capsule of
+   plain glass with a visible rim, no fill colour of its own. */
+.btn-glass-primary {
+  background: linear-gradient(165deg, color-mix(in srgb, var(--accent) 55%, white 15%), var(--accent));
+  color: var(--glass-ink);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    0 14px 28px -12px color-mix(in srgb, var(--accent) 55%, transparent);
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), filter 0.2s var(--ease-out);
+}
+.btn-glass-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    0 18px 36px -14px color-mix(in srgb, var(--accent) 65%, transparent);
+}
+.btn-glass-primary:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+.btn-glass-secondary {
+  background: var(--surface);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+  transition: transform 0.2s var(--ease-out), border-color 0.2s var(--ease-out), background-color 0.2s var(--ease-out);
+}
+:root[data-theme="light"] .btn-glass-secondary {
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+}
+.btn-glass-secondary:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--surface) 70%, var(--accent-soft));
+}
+
+/* Floating glass bars: nav and the mobile action bar. */
+.glass-bar {
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+}
+:root[data-theme="light"] .glass-bar {
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .bg-surface,
+  .bg-surface-muted,
+  .bg-accent-soft,
+  .glass-bar {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .glass-bright,
+  .glass-field {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--surface);
+  }
 }
 
 ::selection {

@@ -168,7 +168,7 @@ export default async function CaseStudy({ params }: PageProps<"/portfolio/[slug]
             <h2 className="h-sub font-headline text-3xl text-foreground">Have a similar problem?</h2>
             <p className="mt-2 text-foreground/75">Tell me about it and I’ll tell you honestly what it would take.</p>
           </div>
-          <Link href={`/portfolio/?need=${needForGroup[p.group] ?? "unsure"}#start`} className={buttonClasses("primary", "!bg-accent !text-[#0a0d16]")}>
+          <Link href={`/portfolio/?need=${needForGroup[p.group] ?? "unsure"}#start`} className={buttonClasses("primary", "!bg-none !bg-accent !text-[#0a0d16]")}>
             Let’s discuss it <span aria-hidden="true">→</span>
           </Link>
         </section>
