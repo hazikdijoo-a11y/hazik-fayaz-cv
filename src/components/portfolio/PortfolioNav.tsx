@@ -12,27 +12,25 @@ const links = [
 /* The portfolio's own header: no CV links competing with "Start a Project". */
 export function PortfolioNav() {
   return (
-    <header className="no-print sticky top-0 z-50 px-3 pt-3 md:px-5 md:pt-5">
-      <Container className="!px-0">
-        <div className="glass-bar flex items-center justify-between gap-4 rounded-[28px] border border-border bg-surface px-5 py-3">
-          <Link href="/portfolio/" className="font-semibold tracking-tight text-foreground">
-            Hazik Fayaz <span className="hidden font-normal text-muted sm:inline">· Websites &amp; software</span>
+    <header className="no-print sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
+      <Container className="flex items-center justify-between gap-4 py-3.5">
+        <Link href="/portfolio/" className="font-semibold tracking-tight text-foreground">
+          Hazik Fayaz <span className="hidden font-normal text-muted sm:inline">· Websites &amp; software</span>
+        </Link>
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Portfolio">
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} className="text-sm text-muted transition-colors hover:text-foreground">
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex items-center gap-4 sm:gap-6">
+          <Link href="/" className="inline-flex min-h-11 items-center text-sm font-medium text-foreground/85 transition-colors hover:text-accent">
+            My CV
           </Link>
-          <nav className="hidden items-center gap-7 md:flex" aria-label="Portfolio">
-            {links.map((l) => (
-              <Link key={l.href} href={l.href} className="text-sm text-muted transition-colors hover:text-foreground">
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-4 sm:gap-6">
-            <Link href="/" className="inline-flex min-h-11 items-center text-sm font-medium text-foreground/85 transition-colors hover:text-accent">
-              My CV
-            </Link>
-            <Link href="/portfolio/#start" className={buttonClasses("primary", "!px-5 !py-2.5 text-xs")}>
-              Start a Project
-            </Link>
-          </div>
+          <Link href="/portfolio/#start" className={buttonClasses("primary", "!px-5 !py-2.5 text-xs")}>
+            Start a Project
+          </Link>
         </div>
       </Container>
     </header>

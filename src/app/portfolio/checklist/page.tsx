@@ -45,7 +45,7 @@ export default function ChecklistPage() {
             them.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/portfolio/?need=audit#start" className={buttonClasses("primary", "!bg-none !bg-accent !text-[#0a0d16]")}>
+            <Link href="/portfolio/?need=audit#start" className={buttonClasses("primary", "!bg-accent !text-[#0a0d16]")}>
               Request an audit · ₹999
             </Link>
             <a

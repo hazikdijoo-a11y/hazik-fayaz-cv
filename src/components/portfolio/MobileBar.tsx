@@ -18,17 +18,11 @@ export function MobileBar() {
   const wa = whatsappLink("Hi Hazik, I'd like to talk about a website or app.");
   return (
     <>
-      <div className="glass-bar no-print fixed inset-x-3 bottom-3 z-50 flex gap-2.5 rounded-[28px] border border-border bg-surface px-3 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] md:hidden">
+      <div className="no-print fixed inset-x-0 bottom-0 z-50 flex gap-2.5 border-t border-border bg-background/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur md:hidden">
         <Link href="/portfolio/#start" className={buttonClasses("primary", "flex-1")}>
           Start a Project
         </Link>
-        <a
-          href={wa}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Message on WhatsApp"
-          className="grid w-12 place-items-center rounded-full bg-[#25D366] text-[#0a0d16] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45)]"
-        >
+        <a href={wa} target="_blank" rel="noopener noreferrer" aria-label="Message on WhatsApp" className="grid w-12 place-items-center rounded-full bg-[#25D366] text-[#0a0d16]">
           <WaIcon />
         </a>
       </div>
@@ -37,7 +31,7 @@ export function MobileBar() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Message on WhatsApp"
-        className="no-print fixed right-6 bottom-6 z-50 hidden h-14 w-14 place-items-center rounded-full bg-[#25D366] text-[#0a0d16] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45),0_16px_32px_-12px_rgba(0,0,0,0.45)] ring-1 ring-white/15 transition-transform hover:scale-105 md:grid"
+        className="no-print fixed right-6 bottom-6 z-50 hidden h-14 w-14 place-items-center rounded-full bg-[#25D366] text-[#0a0d16] shadow-lg transition-transform hover:scale-105 md:grid"
       >
         <WaIcon className="h-7 w-7" />
       </a>

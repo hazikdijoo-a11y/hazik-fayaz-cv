@@ -16,7 +16,7 @@ const required: Record<string, string> = {
 };
 
 const inputCls =
-  "glass-field w-full rounded-xl px-4 py-3 text-[15px] text-glass-ink placeholder:text-glass-ink-muted focus:outline-2 focus:outline-offset-1 focus:outline-accent";
+  "w-full rounded-xl border bg-white px-4 py-3 text-[15px] text-[#10182a] placeholder:text-[#7a8190] focus:outline-2 focus:outline-offset-1 focus:outline-accent";
 
 function Field({
   id,
@@ -35,12 +35,12 @@ function Field({
 }) {
   return (
     <div className="grid gap-1.5">
-      <label htmlFor={id} className="text-sm font-medium text-glass-ink">
-        {label} {optional && <span className="font-normal text-glass-ink-muted">(optional)</span>}
+      <label htmlFor={id} className="text-sm font-medium text-[#10182a]">
+        {label} {optional && <span className="font-normal text-[#5c6472]">(optional)</span>}
       </label>
       {children}
       {hint && !error && (
-        <p id={`${id}-hint`} className="text-xs text-glass-ink-muted">
+        <p id={`${id}-hint`} className="text-xs text-[#5c6472]">
           {hint}
         </p>
       )}
@@ -120,16 +120,16 @@ export function IntakeForm() {
     "aria-invalid": errors[name] ? true : undefined,
     "aria-describedby": errors[name] ? `${id}-error` : hint ? `${id}-hint` : undefined,
     onInput: () => clear(name),
-    className: inputCls,
+    className: `${inputCls} ${errors[name] ? "border-[#a33a22]" : "border-[#d9d4c7]"}`,
   });
 
   if (state === "sent") {
     return (
-      <div className="glass-bright animate-fade-up rounded-3xl border p-7 md:p-10">
-        <p className="grid h-12 w-12 place-items-center rounded-full bg-[#2f7d5a]/15 text-xl font-bold text-[#2f7d5a]" aria-hidden="true">
+      <div className="animate-fade-up rounded-3xl bg-[#faf8f4] p-7 text-[#3d4452] md:p-10">
+        <p className="grid h-12 w-12 place-items-center rounded-full bg-[#e3f1e8] text-xl font-bold text-[#2f7d5a]" aria-hidden="true">
           ✓
         </p>
-        <h3 ref={confirmRef} tabIndex={-1} className="font-headline mt-5 text-3xl text-glass-ink outline-none">
+        <h3 ref={confirmRef} tabIndex={-1} className="font-headline mt-5 text-3xl text-[#10182a] outline-none">
           Thanks, your details are in.
         </h3>
         <p className="mt-3 text-[15px] leading-relaxed">
@@ -145,11 +145,11 @@ export function IntakeForm() {
             href={whatsappLink("Hi Hazik, I just sent an enquiry from your portfolio.")}
             target="_blank"
             rel="noopener noreferrer"
-            className={buttonClasses("primary", "!bg-none !bg-[#25D366] !text-[#0a0d16]")}
+            className={buttonClasses("primary", "!bg-[#25D366] !text-[#0a0d16]")}
           >
             Message me on WhatsApp now<span className="sr-only"> (opens in a new tab)</span>
           </a>
-          <button type="button" onClick={() => setState("idle")} className="min-h-11 text-sm font-medium text-glass-ink underline underline-offset-4">
+          <button type="button" onClick={() => setState("idle")} className="min-h-11 text-sm font-medium text-[#10182a] underline underline-offset-4">
             Send another enquiry
           </button>
         </div>
@@ -158,9 +158,9 @@ export function IntakeForm() {
   }
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} noValidate className="glass-bright rounded-3xl border p-6 md:p-8">
+    <form ref={formRef} onSubmit={onSubmit} noValidate className="rounded-3xl bg-[#faf8f4] p-6 text-[#3d4452] md:p-8">
       <fieldset className="grid gap-5">
-        <legend className="mb-4 font-mono-tight text-[11px] uppercase text-glass-ink-muted">About you</legend>
+        <legend className="mb-4 font-mono-tight text-[11px] uppercase text-[#5c6472]">About you</legend>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field id="p-name" label="Your name" error={errors.name}>
             <input type="text" autoComplete="name" maxLength={120} {...a11y("p-name", "name")} />
@@ -180,8 +180,8 @@ export function IntakeForm() {
         </Field>
       </fieldset>
 
-      <fieldset className="mt-8 grid gap-5 border-t border-glass-field-border pt-7">
-        <legend className="mb-4 font-mono-tight text-[11px] uppercase text-glass-ink-muted">What you need</legend>
+      <fieldset className="mt-8 grid gap-5 border-t border-[#e4e0d5] pt-7">
+        <legend className="mb-4 font-mono-tight text-[11px] uppercase text-[#5c6472]">What you need</legend>
         <Field id="p-need" label="What do you need?" error={errors.need}>
           <select
             value={need}
@@ -238,7 +238,7 @@ export function IntakeForm() {
         <button type="submit" disabled={state === "sending"} className={buttonClasses("primary", "!bg-[#10182a] !text-[#faf8f4]")}>
           {state === "sending" ? "Sending…" : "Send my enquiry"}
         </button>
-        <span className="text-xs text-glass-ink-muted">Used only to reply to you.</span>
+        <span className="text-xs text-[#5c6472]">Used only to reply to you.</span>
       </div>
       <p className="mt-4 min-h-5 text-sm" role="status" aria-live="polite">
         {Object.values(errors).some(Boolean) && <span className="text-[#a33a22]">A few details are missing. Check the highlighted fields.</span>}

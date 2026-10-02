@@ -309,7 +309,7 @@ export default function PortfolioPage() {
               The Website Conversion Checklist: 20 checks a small business can run on its own site in about ten minutes, with a score at the end. Free,
               no email needed.
             </p>
-            <Link href="/portfolio/checklist/" className={buttonClasses("primary", "mt-8 !bg-none !bg-accent !text-[#0a0d16]")}>
+            <Link href="/portfolio/checklist/" className={buttonClasses("primary", "mt-8 !bg-accent !text-[#0a0d16]")}>
               Open the free checklist <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -406,7 +406,7 @@ export default function PortfolioPage() {
             </ol>
             <div className="mt-8 border-t border-border pt-7">
               <p className="text-sm font-semibold text-foreground">Prefer to chat?</p>
-              <a href={wa} target="_blank" rel="noopener noreferrer" className={buttonClasses("primary", "mt-3 !bg-none !bg-[#25D366] !text-[#0a0d16]")}>
+              <a href={wa} target="_blank" rel="noopener noreferrer" className={buttonClasses("primary", "mt-3 !bg-[#25D366] !text-[#0a0d16]")}>
                 <WaIcon /> WhatsApp me<span className="sr-only"> (opens in a new tab)</span>
               </a>
               <p className="mt-4 text-sm text-muted">
