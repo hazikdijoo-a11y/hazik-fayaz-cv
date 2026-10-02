@@ -39,7 +39,7 @@ export const projects: Project[] = [
   {
     "slug": "shiftreset",
     "group": "products",
-    "featured": 4,
+    "featured": 1,
     "highlights": [
       "A 24-question assessment across six life areas builds a personal Reset Profile",
       "Six programs with 92 daily actions and progress tracking",
@@ -138,7 +138,7 @@ export const projects: Project[] = [
   {
     "slug": "altitude-backend",
     "group": "business",
-    "featured": 5,
+    "featured": 2,
     "highlights": [
       "Prices are set on the server; the browser never sends an amount",
       "Signed webhooks that are safe to repeat, so a retry never double-counts",
@@ -784,7 +784,7 @@ export const projects: Project[] = [
   {
     "slug": "deepika-brown-makeovers",
     "group": "websites",
-    "featured": 2,
+    "featured": 5,
     "highlights": [
       "A draggable before-and-after slider for the studio’s nail work",
       "A lookbook whose photos open full size",
@@ -875,7 +875,7 @@ export const projects: Project[] = [
   {
     "slug": "dijoo-afghan-cap-house",
     "group": "websites",
-    "featured": 1,
+    "featured": 4,
     "highlights": [
       "A leather panel where a lamp follows the cursor across the stitching",
       "Call and directions buttons, plus a call bar that appears on phones once the hero scrolls away",
